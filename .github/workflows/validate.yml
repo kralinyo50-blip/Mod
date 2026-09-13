@@ -1,0 +1,23 @@
+name: Validate packs
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Datapack / resource pack dogrulamasi
+        run: python3 tools/validate.py
+      - name: Paketleri ziple (artekontrol)
+        run: python3 tools/package_extras.py
+      - name: Zip icerigini listele
+        run: |
+          cd dist && for z in *.zip; do echo "== $z"; unzip -l "$z" | tail -n +4 | head -20; done

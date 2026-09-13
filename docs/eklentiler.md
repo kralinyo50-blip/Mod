@@ -22,7 +22,7 @@ Boyama eşleşmeleri, modun kendi kılıf tarifleriyle birebir aynı: siyah boya
 
 > Not: Başarım koşulları 1.20.1 biçimiyle (`"item": "..."` tekil alan) yazılmıştır. 1.20.5+ sürümlere taşınırsa `"items": ["..."]` olarak güncellenmeli.
 
-## 2. Resource pack — `resourcepacks/mikasrevs_phone_turkish_fix/`
+## 2. Dil paketi (resource pack) — `resourcepacks/mikasrevs_phone_lang_pack/`
 
 **Kurulum:** klasörü `.minecraft/resourcepacks/` içine kopyala, oyunda *Seçenekler → Kaynak Paketleri*'nden **en üste** taşı (mod asset'lerini geçersiz kılması gerekir).
 
@@ -32,6 +32,27 @@ Ne düzeltiyor: modun aktif `tr_tr.json` dosyasında Türkçe karakterler kaybol
 
 Aynı düzeltmeyi kalıcı yapmak istersen: bu dosyayı JAR'daki `assets/mikasrevs_phone/lang/tr_tr.json` ile değiştirmen yeterli (kaynak projede `src/main/resources/assets/mikasrevs_phone/lang/tr_tr.json`).
 
-## 3. Doğrulama
+### Eklenen diller
 
-Repo'ya eklenen tüm JSON'lar `json.tool` ile doğrulanmıştır (geçerli JSON, UTF-8). Datapack'i yükledikten sonra oyun logunda “Selected new data pack” ve hata uyarısı olmamasını kontrol et.
+| Dosya | Kapsam |
+|---|---|
+| `tr_tr.json` | Düzeltilmiş Türkçe (karakter hatası giderildi) |
+| `de_de.json` | Almanca |
+| `fr_fr.json` | Fransızca |
+| `it_it.json` | İtalyanca |
+| `pt_br.json` | Brezilya Portekizcesi |
+| `az_az.json` | Azerbaycan Türkçesi |
+
+> **Kapsam sınırı:** telefon arayüzünün büyük kısmı (uygulama adları, butonlar, ekran metinleri) Java içinde hardcoded olduğu için resource pack ile çevrilemiyor. Bu paket **eşya adlarını** ve **çağrı/mesaj bildirimlerini** (`message.mattupolis_phone.*`) çevirir. Arayüzün tamamı için `ROADMAP.md` §5.7 (metinlerin lang dosyalarına taşınması) gerekir.
+
+## 3. Araçlar
+
+```bash
+python3 tools/validate.py        # JSON + paket yapısı + dil anahtarı eşleşmesi doğrulaması
+python3 tools/package_extras.py  # dist/ içine kuruluma hazır .zip üretir
+```
+
+`validate.py`, JAR'daki `en_us.json` anahtarlarını referans alır ve dil dosyalarındaki eksik/fazla anahtarları bildirir.
+Her push'ta GitHub Actions (`.github/workflows/validate.yml`) bu kontrolleri otomatik çalıştırır.
+
+Datapack'i yükledikten sonra oyun logunda “Selected new data pack” satırını ve hata uyarısı olmadığını kontrol et.

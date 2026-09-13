@@ -44,7 +44,7 @@ Bu ortamda Forge/Maven'a erişim kapalı olduğu için derleme de yapılamıyor.
 | 2.3 | **Galeri** | Albümler/klasörler, fotoğraf düzenleme (filtre, kırp, döndür), silme, PNG olarak dışa aktarma, depolama kotası. | `PhoneGalleryStore` NativeImage tutuyor; `NativeImage#writeToFile` ile `screenshots/` klasörüne export kolay. |
 | 2.4 | **Müzik** | Kullanıcı kendi parçalarını eklesin (klasörden/ resource pack'ten tarama), çalma listesi, favoriler, arka planda çalma ayarı. | `PhoneMusicManager.TRACKS` şu an hardcoded. Klasör taraması (`config/mikasrevs_phone/music/*.ogg`) + dinamik `SoundEvent` kaydı yapılabilir. |
 | 2.5 | **Duvar kağıdı** | Özel duvar kağıdı yükleme (URL/dosya), biyoma/gün saatine göre **dinamik** duvar kağıdı, paralaks. | `PhoneWallpaperStore` prosedürel çiziyor (`drawCitySilhouette`, `drawForestSilhouette`, `drawGoldLines`); “custom” stili eklenip dosyadan `DynamicTexture` yüklenebilir. |
-| 2.6 | **Sağlık (Health)** | Adım sayar, kat edilen mesafe, koşu/uyku/yiyecek takibi, günlük hedef + bildirim, grafik (son 7 gün). | `PhoneHealthEvents` zaten event dinliyor; `PhoneHealthStore`’a geçmiş serisi eklenir. Minecraft 1.20.1’de `player.getFoodData()`, `Stats` (walk distance) kullanılabilir. |
+| 2.6 | **Sağlık (Health)** | Adım sayısı, mesafe, aktif tick, yenilen yemek ve günlük hedef **zaten kaydediliyor** (`PhoneHealthStore`). Eksik: **geçmiş grafiği (son 7 gün)**, haftalık özet, uyku takibi, hedefe ulaşınca bildirim. | `PhoneHealthStore` alanları hazır; sadece geçmiş serisi + çizim + bildirim eklenecek. |
 | 2.7 | **Banka** | IBAN/hesap no, kart (kredi/banka kartı) görünümü, faiz, kredi/taksit, otomatik ödeme, döviz kuru, para transferi makbuzu görselleştirme. | Sunucu tarafı `PhoneBankServerStore` + `KuronomyBankBridge` hazır; sadece ekran + yeni paketler. Admin denetim logu zaten var (`ClientboundBankAdminAuditPacket`). |
 | 2.8 | **Marketplace** | Kategori filtresi, arama, favoriler, satıcı puanı, sipariş/kargo takibi, teslimat noktası (GPS ile). | `PhoneMarketplaceServerStore$Listing` alan eklemesi + `PhoneMarketplaceScreen` filtre UI. |
 | 2.9 | **GPS** | Yer işareti (waypoint) kaydetme/atlama, çok noktalı rota, **ölüm noktası** kaydı, canlı konum paylaşımı süresi, yakındaki oyuncuları listeleme, JourneyMap/Xaero waypoint senkronizasyonu. | `PhoneGpsScreen$GpsTarget`, `PhoneGpsBridge`, `PhoneGpsCompactOverlay` var; waypoint listesi kalıcı hale getirilir. Harita modlarıyla köprü `PhoneCommonCompat`/`PhoneClientCompat` kalıbıyla yazılır (Kuronomy örneği gibi opsiyonel). |
@@ -119,10 +119,20 @@ Bu ortamda Forge/Maven'a erişim kapalı olduğu için derleme de yapılamıyor.
 
 ---
 
+## 6.1 Hazır tasarım dokümanları
+
+Kaynak kod depoya gelir gelmez uygulanabilir, sınıf/sınıf-içi detay seviyesinde yazılmış üç taslak:
+
+- `docs/tasarim/01-gorevler-tasks.md` — Görevler (Tasks) uygulaması: veri modeli, kayıt formatı, ekran akışı, katalog/bildirim entegrasyonu, 5 dil metni, kabul kriterleri.
+- `docs/tasarim/02-saat-alarm.md` — Saat / Alarm / Kronometre / Zamanlayıcı: oyun saati kaynağı, store, tick entegrasyonu, ikon yolu, kabul kriterleri.
+- `docs/tasarim/03-el-feneri.md` — El feneri: 3 uygulama seçeneği (gece görüşü / dinamik ışık / ışık bloğu), ayar entegrasyonu, kontrol merkezi + Dynamic Island UI.
+
 ## 7. Bu depoda şu an hazır olanlar
 
 - `datapacks/mikasrevs_phone_extras/` → kılıf boyama + geri dönüşüm + başarım sekmesi (JAR'a dokunmadan çalışır).
-- `resourcepacks/mikasrevs_phone_turkish_fix/` → düzeltilmiş Türkçe metinler.
+- `resourcepacks/mikasrevs_phone_lang_pack/` → düzeltilmiş Türkçe + Almanca/Fransızca/İtalyanca/Portekizce/Azerbaycanlı (eşya adları + çağrı mesajları).
+- `tools/validate.py` + `tools/package_extras.py` + GitHub Actions → paket doğrulama ve dağıtım zip'i.
+- `docs/tasarim/` → 3 özellik için uygulama tasarım dokümanı.
 - `docs/mevcut-durum.md` → modun tam envanteri (uygulamalar, sistemler, paketler, komutlar, zayıf noktalar).
 - `docs/eklentiler.md` → kurulum talimatları.
 

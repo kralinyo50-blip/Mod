@@ -11,7 +11,9 @@ ROADMAP.md                         "Başka ne ekleyebiliriz?" - öncelikli fikir
 docs/mevcut-durum.md               modun tam envanteri (23 uygulama, sistemler, paketler, zayıf noktalar)
 docs/eklentiler.md                 JAR'a dokunmadan çalışan datapack / resource pack kurulumu
 datapacks/mikasrevs_phone_extras/  kılıf boyama + geri dönüşüm + başarım sekmesi
-resourcepacks/mikasrevs_phone_turkish_fix/  düzeltilmiş Türkçe metinler
+resourcepacks/mikasrevs_phone_lang_pack/  düzeltilmiş Türkçe + 5 yeni dil (de, fr, it, pt, az)
+docs/tasarim/                      Görevler / Saat-Alarm / El feneri için uygulama tasarım dokümanları
+tools/                             paket doğrulama ve zip'leme betikleri
 ```
 
 ## Kurulum
@@ -25,6 +27,9 @@ Komutlar: `/phonecall <oyuncu>` · `/phonehangup`
 ## Daha fazla özellik eklemek
 
 Plan ve fikir listesi için **[ROADMAP.md](ROADMAP.md)** dosyasına bak.
+
+Hazır tasarım dokümanları (kaynak kod gelince doğrudan uygulanabilir):
+`docs/tasarim/01-gorevler-tasks.md` · `docs/tasarim/02-saat-alarm.md` · `docs/tasarim/03-el-feneri.md`
 
 Özetle en yüksek getirili ilk beş:
 
