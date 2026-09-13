@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "mikasrevs_phone:phone_cases"
+    },
+    {
+      "item": "minecraft:pink_dye"
+    }
+  ],
+  "result": {
+    "item": "mikasrevs_phone:pink_blossom_case",
+    "count": 1
+  }
+}

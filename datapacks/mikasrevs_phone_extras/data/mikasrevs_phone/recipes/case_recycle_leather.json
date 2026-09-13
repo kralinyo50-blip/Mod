@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "mikasrevs_phone:phone_cases"
+    }
+  ],
+  "result": {
+    "item": "minecraft:leather",
+    "count": 2
+  }
+}

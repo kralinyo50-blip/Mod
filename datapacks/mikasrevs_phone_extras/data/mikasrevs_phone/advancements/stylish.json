@@ -1,0 +1,84 @@
+{
+  "parent": "mikasrevs_phone:root",
+  "display": {
+    "icon": {
+      "item": "mikasrevs_phone:gold_luxury_case"
+    },
+    "title": {
+      "text": "Stil Sahibi",
+      "color": "light_purple"
+    },
+    "description": {
+      "text": "5 farklı telefon kılıfı edin"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "midnight_black_case": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mikasrevs_phone:midnight_black_case"
+          }
+        ]
+      }
+    },
+    "white_frost_case": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mikasrevs_phone:white_frost_case"
+          }
+        ]
+      }
+    },
+    "navy_blue_case": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mikasrevs_phone:navy_blue_case"
+          }
+        ]
+      }
+    },
+    "wine_red_case": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mikasrevs_phone:wine_red_case"
+          }
+        ]
+      }
+    },
+    "gold_luxury_case": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mikasrevs_phone:gold_luxury_case"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "midnight_black_case",
+      "white_frost_case",
+      "navy_blue_case",
+      "wine_red_case",
+      "gold_luxury_case"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": false
+}
